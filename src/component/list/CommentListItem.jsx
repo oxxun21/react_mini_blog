@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    width: calc(100% - 32px);
-    padding: 16px;
+    width: 100%;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid gray;
-    border-radius: 8px;
+    border-bottom: 1px solid gray;
     cursor: pointer;
     background: white;
-    :hover {background: lightgray};
 `;
 
 const ContentText = styled.p`

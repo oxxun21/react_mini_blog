@@ -8,7 +8,6 @@ import data from "../../data.json";
 
 const Wrapper = styled.div`
     padding: 16px;
-    width: calc(100% - 32px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,26 +26,35 @@ const Container = styled.div`
 `;
 
 const PostContainer = styled.div`
-    padding: 8px 16px;
-    border: 1px solid grey;
-    border-radius: 8px;
+    width: 100%;
 `;
 
 const TitleText = styled.p`
     font-size: 28px;
     font-weight: 500;
+    border-bottom: 1px solid grey;
+    padding: 16px;
+    ${(props) => props.height && `height: ${props.height}px`}
 `;
 
 const ContentText = styled.p`
-    font-size: 20px;
+    width: 100%;
+    font-size: 16px;
     line-height: 32px;
     white-space: pre-wrap;
+    margin-top: 8px;
 `;
 
 const CommentLabel = styled.p`
     font-size: 16px;
     font-weight: 500;
 `;
+
+const ButtonContain = styled.div`
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+`
 
 function PostViewPage(props) {
     const navigate = useNavigate();
@@ -82,12 +90,14 @@ function PostViewPage(props) {
                         setComment(event.target.value);
                     }}
                 />
+                <ButtonContain>
                 <Button
                     title="댓글 작성하기"
                     onClick={() => {
                         navigate("/main-pages");
                     }}
                 />
+                </ButtonContain>
             </Container>
         </Wrapper>
     );

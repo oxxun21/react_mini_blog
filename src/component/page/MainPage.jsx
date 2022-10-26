@@ -7,7 +7,6 @@ import data from '../../data.json';
 
 const Wrapper = styled.div`
     padding: 16px;
-    width: calc(100% - 32px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +34,13 @@ const MainTitleText = styled.p`
 
 const Hello = styled.p`
     font-size: 16px;
+    margin-top: 20px;
+`;
 
+const ButtonContain = styled.div`
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
 `
 
 function MainPage({ userName }) {
@@ -46,12 +51,14 @@ function MainPage({ userName }) {
             <Container>
                 <Hello>{userName} 님, 안녕하세요.</Hello>
                 <MainTitleText>째잉이 미니 블로그</MainTitleText>
+                <ButtonContain>
                 <Button
                     title="글 작성하기"
                     onClick={() => {
                         navigate("/post-write");
                     }}
                 />
+                </ButtonContain>
 
                 <PostList
                     posts={data}

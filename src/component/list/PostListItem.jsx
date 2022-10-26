@@ -2,23 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    width: calc(100% - 32px);
-    padding: 16px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    border: 1px solid grey;
-    border-radius: 8px;
+    border-bottom: 1px solid grey;
     cursor: pointer;
     background: white;
     :hover {
-        background: lightgrey;
+        border-bottom: 3px solid grey;
     }
 `;
 
 const TitleText = styled.p`
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
 `;
 
