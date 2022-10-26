@@ -64,7 +64,7 @@ function PostViewPage(props) {
                 <Button
                     title="뒤로 가기"
                     onClick={() => {
-                        navigate("/");
+                        navigate("/main-pages");
                     }}
                 />
                 <PostContainer>
@@ -85,7 +85,7 @@ function PostViewPage(props) {
                 <Button
                     title="댓글 작성하기"
                     onClick={() => {
-                        navigate("/");
+                        navigate("/main-pages");
                     }}
                 />
             </Container>

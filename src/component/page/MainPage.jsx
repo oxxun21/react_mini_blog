@@ -25,12 +25,27 @@ const Container = styled.div`
     }
 `;
 
-function MainPage(props) {
+const MainTitleText = styled.p`
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #77A1D3;
+    padding: 16px;
+`;
+
+const Hello = styled.p`
+    font-size: 16px;
+
+`
+
+function MainPage({ userName }) {
     const navigate = useNavigate();
 
     return (
         <Wrapper>
             <Container>
+                <Hello>{userName} 님, 안녕하세요.</Hello>
+                <MainTitleText>째잉이 미니 블로그</MainTitleText>
                 <Button
                     title="글 작성하기"
                     onClick={() => {
