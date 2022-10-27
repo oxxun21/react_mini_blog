@@ -5,7 +5,6 @@ import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 
 const Wrapper = styled.div`
-    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +12,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    width: 100%;
+    width: 60%;
+    margin-top: 30px;
 
     & > * {
         :not(:last-child) {
@@ -21,6 +21,7 @@ const Container = styled.div`
         }
     }
 `;
+
 
 function PostWritePage(props) {
     const navigate = useNavigate();

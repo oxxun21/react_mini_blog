@@ -4,18 +4,17 @@ import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "../ui/Button";
 import data from '../../data.json';
+import DarkOrLight from "../ui/DarkOrLight";
 
 const Wrapper = styled.div`
-    padding: 16px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 `;
 
 const Container = styled.div`
     width: 100%;
-    max-width: 720px;
 
     & > * {
         :not(:last-child) {
@@ -24,24 +23,47 @@ const Container = styled.div`
     }
 `;
 
+const TitleContain = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background: #77A1D3;
+`
+
 const MainTitleText = styled.p`
-    font-size: 24px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 28px;
     font-weight: bold;
     text-align: left;
-    border-bottom: 1px solid #77A1D3;
-    padding: 16px;
+    padding: 30px 120px;
+    color: white;
+    margin-top: 20px;
+    text-shadow: 0 0 5px rgba(35, 35, 35, 0.7);
 `;
 
 const Hello = styled.p`
     font-size: 16px;
-    margin-top: 20px;
+    color: white;
+    padding: 30px 120px;
+    margin-bottom: 10px;
 `;
 
 const ButtonContain = styled.div`
     display: flex;
     flex-flow: row;
-    justify-content: flex-end;
+    justify-content: space-around;
+    margin: 20px;
 `
+
+const PostContain = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+`
+
 
 function MainPage({ userName }) {
     const navigate = useNavigate();
@@ -49,23 +71,32 @@ function MainPage({ userName }) {
     return (
         <Wrapper>
             <Container>
-                <Hello>{userName} 님, 안녕하세요.</Hello>
-                <MainTitleText>째잉이 미니 블로그</MainTitleText>
-                <ButtonContain>
-                <Button
-                    title="글 작성하기"
-                    onClick={() => {
-                        navigate("/post-write");
-                    }}
-                />
-                </ButtonContain>
+                <TitleContain>
+                    <MainTitleText>째잉이 미니 블로그</MainTitleText>
+                    <Hello>{userName} 님, 안녕하세요.</Hello>
+                </TitleContain>
 
-                <PostList
-                    posts={data}
-                    onClickItem={(item) => {
-                        navigate(`/post/${item.id}`);
-                    }}
-                />
+                <ButtonContain>
+                    <Button
+                        title="글 작성하기"
+                        onClick={() => {
+                            navigate("/post-write");
+                        }}
+                    />
+                    <Button
+                        title="테마 변경"
+                        onClick={() => {}}
+                    />
+                </ButtonContain>
+                
+                <PostContain>
+                    <PostList
+                        posts={data}
+                        onClickItem={(item) => {
+                            navigate(`/post/${item.id}`);
+                        }}
+                    />
+                </PostContain>
             </Container>
         </Wrapper>
     );
