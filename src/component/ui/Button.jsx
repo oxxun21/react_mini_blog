@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "../../font/AppFont.css";
 
 const StyleButton = styled.button`
     padding: 8px 16px;
@@ -7,6 +8,11 @@ const StyleButton = styled.button`
     border-width: 1px;
     border-radius: 8px;
     cursor: pointer;
+    :hover {
+        background: #77A1D3;
+        color: white;
+    }
+    font-family: 'Noto Serif KR';
 `
 
 function Button(props) {

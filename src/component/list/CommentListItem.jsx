@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div`  
     width: 100%;
-    padding: 14px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,6 +13,7 @@ const Wrapper = styled.div`
 
 const ContentText = styled.p`
     font-size: 14px;
+    padding: 14px;
 `;
 
 function CommentListItem(props) {

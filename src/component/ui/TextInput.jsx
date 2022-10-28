@@ -5,8 +5,6 @@ const StyledTextarea = styled.textarea`
     padding: 16px;
     font-size: 14px;
     line-height: 20px;
-    width: 100%;
-    border: none;
     resize: none;
     border: 1px solid black;
 `;

@@ -1,16 +1,17 @@
-import React from "react";
+import React, { usestate } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "../ui/Button";
 import data from '../../data.json';
-import DarkOrLight from "../ui/DarkOrLight";
+import "../../font/AppFont.css";
 
 const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Noto Serif KR';
 `;
 
 const Container = styled.div`
@@ -28,13 +29,13 @@ const TitleContain = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    background: #77A1D3;
+    background: #82afe6;
 `
 
 const MainTitleText = styled.p`
     display: flex;
     align-items: flex-start;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     text-align: left;
     padding: 30px 120px;
@@ -44,7 +45,7 @@ const MainTitleText = styled.p`
 `;
 
 const Hello = styled.p`
-    font-size: 16px;
+    font-size: 20px;
     color: white;
     padding: 30px 120px;
     margin-bottom: 10px;
@@ -58,6 +59,7 @@ const ButtonContain = styled.div`
 `
 
 const PostContain = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -65,15 +67,16 @@ const PostContain = styled.div`
 `
 
 
-function MainPage({ userName }) {
+function MainPage(props) {
     const navigate = useNavigate();
+    //const userName = useState(() => {JSON.stringify(window.localStorage.getItem("userName"))});
 
     return (
         <Wrapper>
             <Container>
                 <TitleContain>
                     <MainTitleText>째잉이 미니 블로그</MainTitleText>
-                    <Hello>{userName} 님, 안녕하세요.</Hello>
+                    <Hello>{props.userName}님, 안녕하세요.</Hello>
                 </TitleContain>
 
                 <ButtonContain>

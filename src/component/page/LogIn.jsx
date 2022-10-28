@@ -36,46 +36,22 @@ const Input = styled.input`
     height: 40px;
     border: 1px solid black;
     margin-right: 20px;
+    padding: 0 10px;
 `
 
 const LogInButton = styled.button`
     width: 100px;
-    height: 40px;
-    border: 1px solid black;
-    font-size: 18px;
-    font-weight: bold;
+    height: 45px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-width: 1px;
+    border-radius: 8px;
     cursor: pointer;
+    :hover {
+        background: #77A1D3;
+        color: white;
+    }
 `
-
-// const LoginFormContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 100%;
-// `;
-
-// const LoginTitle = styled.h1`
-//   font-size: 32px;
-//   color: beige;
-//   margin-top: 20px;
-// `;
-
-// const StyledForm = styled.form`
-//   margin-top: 20px;
-// `;
-
-// const StyledInput = styled.input`
-//   width: 400px;
-//   height: 30px;
-//   font-size: 20px;
-//   margin-right: 20px;
-// `;
-
-// const StyledButton = styled.button`
-//   width: 100px;
-//   height: 30px;
-//   background-color: aliceblue;
-// `;
 
 const ErrorMessage = styled.span`
   font-size: 16px;
@@ -107,6 +83,11 @@ function LogIn(props) {
   
     const [isLogin, setIsLogin] = useState(false);
     const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+      window.localStorage.setItem("userName", JSON.stringify(userName));
+    }, [userName]);
+
     const [message, setMessage] = useState(false);
   
     return (
@@ -119,12 +100,12 @@ function LogIn(props) {
             <ClockText>{clock}</ClockText>
             <StyledForm onSubmit={onSubmit}>
               <Input
-                placeholder="write your name"
+                placeholder="What's your name?"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
               />
               <LogInButton>Log In</LogInButton>
-            </StyledForm>{" "}
+            </StyledForm>
             {message ? (
               <ErrorMessage>닉네임을 입력해 주세요!</ErrorMessage>
             ) : null}

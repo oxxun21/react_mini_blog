@@ -5,28 +5,21 @@ import CommentList from "../list/CommentList";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import data from "../../data.json";
+import "../../font/AppFont.css";
 
 const Wrapper = styled.div`
-    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
-
-const Container = styled.div`
-    width: 100%;
-    max-width: 720px;
-
-    & > * {
-        :not(:last-child) {
-            margin-bottom: 16px;
-        }
-    }
+    font-family: 'Noto Serif KR';
+    padding: 20px;
 `;
 
 const PostContainer = styled.div`
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
 `;
 
 const TitleText = styled.p`
@@ -42,18 +35,35 @@ const ContentText = styled.p`
     font-size: 16px;
     line-height: 32px;
     white-space: pre-wrap;
-    margin-top: 8px;
+    margin: 8px 0 20px 0;
 `;
 
 const CommentLabel = styled.p`
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
+    display: flex;
+    align-self: flex-start;
+    margin-bottom: 10px;
 `;
 
 const ButtonContain = styled.div`
     display: flex;
     flex-flow: row;
-    justify-content: flex-end;
+    align-self: flex-start;
+    margin-bottom: 10px;
+`
+
+const CommentContain = styled.div`
+    display: flex;
+    align-self: flex-end;
+    margin-top: 10px;
+`
+
+const CommentDiv = styled.div`
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    flex-direction: column;
 `
 
 function PostViewPage(props) {
@@ -67,19 +77,22 @@ function PostViewPage(props) {
     const [comment, setComment] = useState("");
 
     return (
-        <Wrapper>
-            <Container>
+        <Wrapper>     
+            <PostContainer>
+                <ButtonContain>
                 <Button
-                    title="뒤로 가기"
-                    onClick={() => {
-                        navigate("/main-pages");
-                    }}
-                />
-                <PostContainer>
-                    <TitleText>{post.title}</TitleText>
-                    <ContentText>{post.content}</ContentText>
-                </PostContainer>
+                        title="뒤로 가기"
+                        onClick={() => {
+                            navigate("/main-pages");
+                        }}
+                    />
+                </ButtonContain>
 
+                <TitleText>{post.title}</TitleText>
+                <ContentText>{post.content}</ContentText>
+            </PostContainer>
+
+            <CommentDiv>
                 <CommentLabel>댓글</CommentLabel>
                 <CommentList comments={post.comments} />
 
@@ -90,15 +103,16 @@ function PostViewPage(props) {
                         setComment(event.target.value);
                     }}
                 />
-                <ButtonContain>
+
+                <CommentContain>
                 <Button
                     title="댓글 작성하기"
                     onClick={() => {
                         navigate("/main-pages");
                     }}
                 />
-                </ButtonContain>
-            </Container>
+                </CommentContain>
+            </CommentDiv>
         </Wrapper>
     );
 }
