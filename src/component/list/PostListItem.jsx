@@ -10,8 +10,7 @@ const Wrapper = styled.div`
     border-bottom: 1px solid grey;
     width: 100%;
     cursor: pointer;
-    background: white;
-    
+
 `;
 
 const TitleText = styled.p`

@@ -12,6 +12,8 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     font-family: 'Noto Serif KR';
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `;
 
 const Container = styled.div`
@@ -65,7 +67,6 @@ const PostContain = styled.div`
     flex-direction: column;
     justify-content: center;
 `
-
 
 function MainPage(props) {
     const navigate = useNavigate();

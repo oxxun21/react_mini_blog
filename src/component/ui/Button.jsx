@@ -9,7 +9,7 @@ const StyleButton = styled.button`
     border-radius: 8px;
     cursor: pointer;
     :hover {
-        background: #77A1D3;
+        background: ${(props) => props.theme.BtnColor};
         color: white;
     }
     font-family: 'Noto Serif KR';

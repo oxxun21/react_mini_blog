@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../ui/Button";
-import TextInput from "../ui/TextInput";
+import "../../font/AppFont.css";
 
 const Wrapper = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    width: 60%;
+    width: 50%;
     margin-top: 30px;
 
     & > * {
@@ -21,6 +21,25 @@ const Container = styled.div`
         }
     }
 `;
+
+const Title = styled.input`
+    border: none;
+    border-bottom: 1px solid #82afe6;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    font-family: 'Noto Serif KR';
+    padding: 20px;
+`
+
+const Content = styled.input`
+    border: 1px solid grey;
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Noto Serif KR';
+    padding: 20px;
+`
 
 
 function PostWritePage(props) {
@@ -32,20 +51,20 @@ function PostWritePage(props) {
     return (
         <Wrapper>
             <Container>
-                <TextInput
-                    height={20}
+                <Title
                     value={title}
                     onChange={(event) => {
                         setTitle(event.target.value);
                     }} 
+                    placeholder="Title"
                 />
 
-                <TextInput
-                    height={480}
+                <Content
                     value={content}
                     onChange={(event) => {
                         setContent(event.target.value);
                     }} 
+                    placeholder="Contents"
                 />
 
                 <Button
