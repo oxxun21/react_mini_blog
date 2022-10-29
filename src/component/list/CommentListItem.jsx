@@ -8,7 +8,8 @@ const Wrapper = styled.div`
     justify-content: center;
     border-bottom: 1px solid gray;
     cursor: pointer;
-    background: white;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `;
 
 const ContentText = styled.p`

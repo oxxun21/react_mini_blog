@@ -8,6 +8,7 @@ import "../../font/AppFont.css";
 
 const Wrapper = styled.div`
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +32,7 @@ const TitleContain = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    background: #82afe6;
+    background: ${(props) => props.theme.MainColor};
 `
 
 const MainTitleText = styled.p`
@@ -56,7 +57,7 @@ const Hello = styled.p`
 const ButtonContain = styled.div`
     display: flex;
     flex-flow: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     margin: 20px;
 `
 
@@ -86,10 +87,6 @@ function MainPage(props) {
                         onClick={() => {
                             navigate("/post-write");
                         }}
-                    />
-                    <Button
-                        title="테마 변경"
-                        onClick={() => {}}
                     />
                 </ButtonContain>
                 

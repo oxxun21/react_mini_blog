@@ -4,6 +4,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import styled from "styled-components";
 
 // Pages
 import MainPage from './component/page/MainPage';
@@ -13,16 +14,26 @@ import LogIn from "./component/page/LogIn";
 import { ThemeProvider } from "styled-components";
 import Button from "./component/ui/Button";
 
+// const BtnContain = styled.div`
+//     display: flex;
+//     justify-content: flex-end;
+//     margin: 20px 40px;
+// `
+
 const defalutTheme = {
-    bgColor: "#FFECEF",
+    bgColor: "white",
     textColor: "black",
-    BtnColor: "#372948"
+    BtnColor: "#bbdefb",
+    MainColor: "#82afe6",
+    borderColor: "#82afe6",
 }
 
 const darkMode = {
-    bgColor: "#251B37",
-    textColor: "#FFECEF",
-    BtnColor: "#FFCACA"
+    bgColor: "#484848",
+    textColor: "#fefefe",
+    BtnColor: "#212121",
+    MainColor: "#212121",
+    borderColor: "white",
 }
 
 function App(props) {
@@ -31,7 +42,7 @@ function App(props) {
     return (
         <BrowserRouter>
             <ThemeProvider theme={isDark ? darkMode : defalutTheme}>
-            <Button onClick={() => setIsDark((prev) => !prev)} />
+            <></><Button title="테마 변경" onClick={() => setIsDark((prev) => !prev)} />
 
             <Routes>
                 <Route index element={<LogIn />} />
@@ -46,3 +57,8 @@ function App(props) {
 }
 
 export default App;
+
+// 테마 컴포넌트 화면 안에 같이 넣기
+// 테마 완성
+// 추가, 삭제 > 할 수 있으면 하고 싶다
+// 사용자 이름 로컬스토리지 저장, 기억

@@ -14,6 +14,9 @@ const Wrapper = styled.div`
     justify-content: center;
     font-family: 'Noto Serif KR';
     padding: 20px;
+    height: 100vh;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `;
 
 const PostContainer = styled.div`

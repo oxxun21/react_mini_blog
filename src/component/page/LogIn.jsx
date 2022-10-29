@@ -3,12 +3,14 @@ import styled from "styled-components";
 import MainPage from "./MainPage";
 
 const Wrapper = styled.div`
-    height: 100vh;
+  height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `
 
 const Title = styled.p `
@@ -41,21 +43,21 @@ const Input = styled.input`
 
 const LogInButton = styled.button`
     width: 100px;
-    height: 45px;
+    height: 40px;
     padding: 8px 16px;
     font-size: 16px;
-    border-width: 1px;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     :hover {
-        background: #77A1D3;
-        color: white;
+        background: ${(props) => props.theme.MainColor};
+        color: ${(props) => props.theme.textColor};
     }
 `
 
 const ErrorMessage = styled.span`
   font-size: 16px;
-  color: #ff577f;
+  color: white;
   margin-top: 20px;
 `;
 

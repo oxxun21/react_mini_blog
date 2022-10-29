@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import style from "../page/App.css";
 import Button from "../ui/Button";
 import "../../font/AppFont.css";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ReactHtmlParser } from 'node-html-parser';
 
 const Wrapper = styled.div`
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `;
 
 const Container = styled.div`
@@ -24,59 +30,90 @@ const Container = styled.div`
 
 const Title = styled.input`
     border: none;
-    border-bottom: 1px solid #82afe6;
+    border-bottom: 1px solid ${(props) => props.theme.borderColor};
     margin-bottom: 20px;
-    width: 100%;
-    height: 50px;
+    width: 94.5%;
+    height: 30px;
     font-size: 30px;
     font-family: 'Noto Serif KR';
     padding: 20px;
-`
-
-const Content = styled.input`
-    border: 1px solid grey;
-    width: 100%;
-    font-size: 18px;
-    font-family: 'Noto Serif KR';
-    padding: 20px;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
 `
 
 
 function PostWritePage(props) {
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
- 
+    const [content, setContent] = useState({
+        title: '',
+        content: '',
+    })
+
+    const [viewContent, setViewContent] = useState([]);
+
+    const getValue = e => {
+        const { name, value } = e.target;
+        setContent({
+            ...content,
+            [name]: value
+        })
+    };
+
     return (
         <Wrapper>
             <Container>
                 <Title
-                    value={title}
-                    onChange={(event) => {
-                        setTitle(event.target.value);
-                    }} 
+                    name="title"
+                    onChange={getValue}
                     placeholder="Title"
                 />
 
-                <Content
-                    value={content}
-                    onChange={(event) => {
-                        setContent(event.target.value);
-                    }} 
-                    placeholder="Contents"
-                />
+            <CKEditor
+                editor={ClassicEditor}
+                data="<p>Write your story!</p>"
+                onReady={editor => {
+                    // You can store the "editor" and use when it is needed.
+                    console.log('Editor is ready to use!', editor);
+                }}
+                onChange={(event, editor) => {
+                    const data = editor.getData();
+                        console.log({ event, editor, data });
+                        setContent({
+                        ...content,
+                        content: data
+                        })
+                        console.log(content);
+                }}
+                onBlur={(event, editor) => {
+                    console.log('Blur.', editor);
+                }}
+                onFocus={(event, editor) => {
+                    console.log('Focus.', editor);
+                }}
+                value={content}
+            />
+
+        
 
                 <Button
                     title="글 작성하기"
-                    onClick={() => {
-                        navigate("/main-pages")
+                    onClick={(props) => {
+                       setViewContent(viewContent.concat({...content}));
                     }}
                 />
+
+                <div>
+                    {viewContent.map(element =>
+                        <div>
+                            <h2>{element.title}</h2>
+                            <div>{element.content}</div>
+                        </div>)}
+                </div>   
             </Container>
         </Wrapper>
     )
 }
-
+// viewContent 이거 했던 것처럼 댓글 작성은 구현할 수 있을거 같은데?
 export default PostWritePage;
 
