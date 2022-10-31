@@ -4,8 +4,12 @@ import styled from "styled-components";
 import CommentList from "../list/CommentList";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
-import data from "../../data.json";
 import "../../font/AppFont.css";
+
+
+
+
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -70,20 +74,39 @@ const CommentDiv = styled.div`
 `
 
 function PostViewPage(props) {
+
+
+
     const navigate = useNavigate();
+
     const { postId } = useParams();
 
-    const post = data.find((item) => {
-        return item.id == postId;   // ts때문에 === 써서 페이지 안보였었음 ㅡㅡ 바꾸지마
-    });
+    let postIdToDB = postId - "1";
 
     const [comment, setComment] = useState("");
 
+    const commentHandler = (event) => {
+        event.preventDefault()
+
+        
+        let object = {
+
+            postId : postIdToDB,
+            commentId : Math.random(),
+            commentDate: "2022년 10월 31일",
+            comment : comment
+            
+        }
+
+       props.onCommentHandler(object);
+        
+    }
+
     return (
-        <Wrapper>     
+        <Wrapper>
             <PostContainer>
                 <ButtonContain>
-                <Button
+                    <Button
                         title="뒤로 가기"
                         onClick={() => {
                             navigate("/main-pages");
@@ -91,14 +114,15 @@ function PostViewPage(props) {
                     />
                 </ButtonContain>
 
-                <TitleText>{post.title}</TitleText>
-                <ContentText>{post.content}</ContentText>
+                <TitleText>{props.posts[postIdToDB].title}</TitleText>
+                <span>{props.posts[postIdToDB].date}</span>
+                <ContentText>{props.posts[postIdToDB].contents}</ContentText>
             </PostContainer>
 
             <CommentDiv>
                 <CommentLabel>댓글</CommentLabel>
-                <CommentList comments={post.comments} />
-
+                <CommentList comments={props.posts[postIdToDB].comments} />
+                <form onSubmit={commentHandler}>
                 <TextInput
                     height={40}
                     value={comment}
@@ -106,15 +130,10 @@ function PostViewPage(props) {
                         setComment(event.target.value);
                     }}
                 />
-
-                <CommentContain>
                 <Button
                     title="댓글 작성하기"
-                    onClick={() => {
-                        navigate("/main-pages");
-                    }}
                 />
-                </CommentContain>
+                </form>
             </CommentDiv>
         </Wrapper>
     );

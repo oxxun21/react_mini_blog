@@ -6,7 +6,6 @@ import Button from "../ui/Button";
 import "../../font/AppFont.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ReactHtmlParser } from 'node-html-parser';
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -114,6 +113,5 @@ function PostWritePage(props) {
         </Wrapper>
     )
 }
-// viewContent 이거 했던 것처럼 댓글 작성은 구현할 수 있을거 같은데?
-export default PostWritePage;
 
+export default PostWritePage;

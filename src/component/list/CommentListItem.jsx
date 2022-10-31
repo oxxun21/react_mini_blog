@@ -15,14 +15,15 @@ const Wrapper = styled.div`
 const ContentText = styled.p`
     font-size: 14px;
     padding: 14px;
-`;
+`
 
 function CommentListItem(props) {
     const { comment } = props;
-    
+
+
     return (
         <Wrapper>
-            <ContentText>{comment.content}</ContentText>
+            <ContentText>{comment}</ContentText>
         </Wrapper>
     );
 }

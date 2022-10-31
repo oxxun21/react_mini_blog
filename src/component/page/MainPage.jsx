@@ -1,4 +1,4 @@
-import React, { usestate } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostList from "../list/PostList";
@@ -69,16 +69,21 @@ const PostContain = styled.div`
     justify-content: center;
 `
 
-function MainPage(props) {
+function MainPage({userName, posts}) {
     const navigate = useNavigate();
     //const userName = useState(() => {JSON.stringify(window.localStorage.getItem("userName"))});
+
+
+const onClickLink = (item) => {
+  navigate(`/post/${item.id}`);
+}
 
     return (
         <Wrapper>
             <Container>
                 <TitleContain>
                     <MainTitleText>째잉이 미니 블로그</MainTitleText>
-                    <Hello>{props.userName}님, 안녕하세요.</Hello>
+                    <Hello>{userName}님, 안녕하세요.</Hello>
                 </TitleContain>
 
                 <ButtonContain>
@@ -92,10 +97,8 @@ function MainPage(props) {
                 
                 <PostContain>
                     <PostList
-                        posts={data}
-                        onClickItem={(item) => {
-                            navigate(`/post/${item.id}`);
-                        }}
+                        posts={posts}
+                        onClickItem={onClickLink}
                     />
                 </PostContain>
             </Container>
@@ -104,3 +107,7 @@ function MainPage(props) {
 }
 
 export default MainPage;
+
+
+
+
