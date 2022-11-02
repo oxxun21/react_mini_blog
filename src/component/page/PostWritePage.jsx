@@ -68,32 +68,30 @@ function PostWritePage(props) {
                     placeholder="Title"
                 />
 
-            <CKEditor
-                editor={ClassicEditor}
-                data="<p>Write your story!</p>"
-                onReady={editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log('Editor is ready to use!', editor);
-                }}
-                onChange={(event, editor) => {
-                    const data = editor.getData();
-                        console.log({ event, editor, data });
-                        setContent({
-                        ...content,
-                        content: data
-                        })
-                        console.log(content);
-                }}
-                onBlur={(event, editor) => {
-                    console.log('Blur.', editor);
-                }}
-                onFocus={(event, editor) => {
-                    console.log('Focus.', editor);
-                }}
-                value={content}
-            />
-
-        
+                <CKEditor
+                    editor={ClassicEditor}
+                    data="<p>Write your story!</p>"
+                    onReady={editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log('Editor is ready to use!', editor);
+                    }}
+                    onChange={(event, editor) => {
+                        const data = editor.getData();
+                            console.log({ event, editor, data });
+                            setContent({
+                            ...content,
+                            content: data
+                            })
+                            console.log(content);
+                    }}
+                    onBlur={(event, editor) => {
+                        console.log('Blur.', editor);
+                    }}
+                    onFocus={(event, editor) => {
+                        console.log('Focus.', editor);
+                    }}
+                    value={content}
+                />
 
                 <Button
                     title="글 작성하기"
@@ -107,7 +105,8 @@ function PostWritePage(props) {
                         <div>
                             <h2>{element.title}</h2>
                             <div>{element.content}</div>
-                        </div>)}
+                        </div>
+                    )}
                 </div>   
             </Container>
         </Wrapper>

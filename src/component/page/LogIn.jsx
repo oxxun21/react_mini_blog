@@ -1,4 +1,5 @@
 import React , { useState , useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainPage from "./MainPage";
 
@@ -61,9 +62,7 @@ const ErrorMessage = styled.span`
   margin-top: 20px;
 `;
 
-
-
-function LogIn(props) {
+function LogIn({ helloWorld , dummyPost }) {
     const [clock, setClock] = useState(0);
 
     useEffect(() => {
@@ -82,22 +81,22 @@ function LogIn(props) {
         e.preventDefault();
       }
     };
-  
+
     const [isLogin, setIsLogin] = useState(false);
     const [userName, setUserName] = useState("");
 
-    useEffect(() => {
-      window.localStorage.setItem("userName", JSON.stringify(userName));
-    }, [userName]);
+    // useEffect(() => {
+    //   window.localStorage.setItem("userName", JSON.stringify(userName));
+    // }, [userName]);
 
     const [message, setMessage] = useState(false);
   
     return (
-      <>
+      <> 
         {isLogin ? (
-          <MainPage userName={userName} />
+          <MainPage userName={userName} dummyPost={dummyPost} />
         ) : (
-          <Wrapper>
+          <Wrapper>    
             <Title>Mini Blog Project</Title>
             <ClockText>{clock}</ClockText>
             <StyledForm onSubmit={onSubmit}>

@@ -6,11 +6,6 @@ import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import "../../font/AppFont.css";
 
-
-
-
-
-
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,7 +13,7 @@ const Wrapper = styled.div`
     justify-content: center;
     font-family: 'Noto Serif KR';
     padding: 20px;
-    height: 100vh;
+    height: 100%;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
 `;
@@ -60,12 +55,6 @@ const ButtonContain = styled.div`
     margin-bottom: 10px;
 `
 
-const CommentContain = styled.div`
-    display: flex;
-    align-self: flex-end;
-    margin-top: 10px;
-`
-
 const CommentDiv = styled.div`
     display: flex;
     width: 60%;
@@ -73,10 +62,29 @@ const CommentDiv = styled.div`
     flex-direction: column;
 `
 
+const CommentDate = styled.span`
+    display: flex;
+    align-self: flex-end;
+    margin-top: 15px;
+    padding-right: 5px;
+`
+
+const CommentBtn = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`
+
+const StyledTextarea = styled.textarea`
+    display: flex;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    resize: none;
+    border: 1px solid grey;
+    margin-bottom: 15px;
+`;
+
 function PostViewPage(props) {
-
-
-
     const navigate = useNavigate();
 
     const { postId } = useParams();
@@ -87,19 +95,15 @@ function PostViewPage(props) {
 
     const commentHandler = (event) => {
         event.preventDefault()
-
         
-        let object = {
-
+        let object = {  
             postId : postIdToDB,
             commentId : Math.random(),
             commentDate: "2022년 10월 31일",
             comment : comment
-            
-        }
 
-       props.onCommentHandler(object);
-        
+        }   
+        props.onCommentHandler(object);  
     }
 
     return (
@@ -115,24 +119,25 @@ function PostViewPage(props) {
                 </ButtonContain>
 
                 <TitleText>{props.posts[postIdToDB].title}</TitleText>
-                <span>{props.posts[postIdToDB].date}</span>
+                <CommentDate>{props.posts[postIdToDB].date}</CommentDate>
                 <ContentText>{props.posts[postIdToDB].contents}</ContentText>
             </PostContainer>
 
             <CommentDiv>
                 <CommentLabel>댓글</CommentLabel>
                 <CommentList comments={props.posts[postIdToDB].comments} />
+                
                 <form onSubmit={commentHandler}>
-                <TextInput
-                    height={40}
-                    value={comment}
+                <StyledTextarea
                     onChange={(event) => {
                         setComment(event.target.value);
                     }}
                 />
+                <CommentBtn>
                 <Button
                     title="댓글 작성하기"
                 />
+                </CommentBtn>
                 </form>
             </CommentDiv>
         </Wrapper>
