@@ -69,7 +69,7 @@ const PostContain = styled.div`
     justify-content: center;
 `
 
-function MainPage({userName, posts, dummyPost}) {
+function MainPage({userName, posts}) {
     const navigate = useNavigate();
     //const userName = useState(() => {JSON.stringify(window.localStorage.getItem("userName"))});
 
@@ -81,7 +81,6 @@ const onClickLink = (item) => {
         <Wrapper>
             <Container>
                 <TitleContain>
-                    {dummyPost}
                     <MainTitleText>째잉이 미니 블로그</MainTitleText>
                     <Hello>{userName}님, 안녕하세요.</Hello>
                 </TitleContain>

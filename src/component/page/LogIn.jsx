@@ -62,7 +62,7 @@ const ErrorMessage = styled.span`
   margin-top: 20px;
 `;
 
-function LogIn({ helloWorld , dummyPost }) {
+function LogIn(props) {
     const [clock, setClock] = useState(0);
 
     useEffect(() => {
@@ -94,7 +94,7 @@ function LogIn({ helloWorld , dummyPost }) {
     return (
       <> 
         {isLogin ? (
-          <MainPage userName={userName} dummyPost={dummyPost} />
+          <MainPage userName={userName} posts={props.posts} />
         ) : (
           <Wrapper>    
             <Title>Mini Blog Project</Title>

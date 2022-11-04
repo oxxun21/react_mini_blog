@@ -17,13 +17,11 @@ const Wrapper = styled.div`
 `;
 
 function PostList(props) {
-    const { posts, onClickItem, dummyPost } = props;
-    
-    console.log(dummyPost);
+    const { posts, onClickItem } = props;
 
     return (
         <Wrapper>     
-            {dummyPost && dummyPost.map((post) => {
+            {posts && posts.map((post) => {
                 return (
                     <PostListItem
                         key={post.id}

@@ -74,12 +74,11 @@ const CommentBtn = styled.div`
     justify-content: flex-end;
 `
 
-const StyledTextarea = styled.textarea`
+const CommentInput = styled.input`
     display: flex;
-    padding: 16px;
+    width: 95%;
+    padding: 21px;
     font-size: 14px;
-    line-height: 20px;
-    resize: none;
     border: 1px solid grey;
     margin-bottom: 15px;
 `;
@@ -128,7 +127,7 @@ function PostViewPage(props) {
                 <CommentList comments={props.posts[postIdToDB].comments} />
                 
                 <form onSubmit={commentHandler}>
-                <StyledTextarea
+                <CommentInput
                     onChange={(event) => {
                         setComment(event.target.value);
                     }}

@@ -200,7 +200,7 @@ function App(props) {
             <ThemeProvider theme={isDark ? darkMode : defalutTheme}>
             <Button title="테마 변경" onClick={() => setIsDark((prev) => !prev)} />
             <Routes>
-                <Route index element={<LogIn dummyPost={gurapingItems} posts={postItems} />} />
+                <Route index element={<LogIn posts={postItems} />} />
                 <Route path="main-pages" element={<MainPage posts={postItems} />} />
                 <Route path="post-write" element={<PostWritePage />} />
              
@@ -215,6 +215,5 @@ function App(props) {
 export default App;
 
 // 테마 컴포넌트 화면 안에 같이 넣기
-// 테마 완성
 // 추가, 삭제 > 할 수 있으면 하고 싶다
 // 사용자 이름 로컬스토리지 저장, 기억
