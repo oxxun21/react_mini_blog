@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "../ui/Button";
@@ -77,12 +78,16 @@ const onClickLink = (item) => {
   navigate(`/post/${item.id}`);
 }
 
+const location = useLocation();
+
+
+
     return (
         <Wrapper>
             <Container>
                 <TitleContain>
                     <MainTitleText>째잉이 미니 블로그</MainTitleText>
-                    <Hello>{userName}님, 안녕하세요.</Hello>
+                    <Hello>{location.state.userName}님, 안녕하세요.</Hello>
                 </TitleContain>
 
                 <ButtonContain>

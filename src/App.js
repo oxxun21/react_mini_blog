@@ -5,6 +5,7 @@ import {
     Route
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
 // Pages
 import MainPage from './component/page/MainPage';
@@ -28,6 +29,12 @@ const darkMode = {
     MainColor: "#212121",
     borderColor: "white",
 }
+
+const BtnContain = styled.div`
+  display: flex;
+  align-self: flex-end;
+  margin: 10px;
+`
 
 function App(props) {
     const [ isDark, setIsDark ] = useState(false)
@@ -155,32 +162,7 @@ function App(props) {
         },
     ]);
 
-
-    const gurapingItems = [{
-        id : "1",
-        title: "잉",
-        date: "2022월 10월 32323일",
-        contents: "사실 나는 가짜 페이지임 ㅋㅋㄹㅇ;",
-        comments: [{
-          commentId : "1",
-          commentDate: "2022년 10월 31일",
-          comment:"실제로 개발하다보면 map함수를 진짜 많이 쓰는 것 같아요😄",
-        },{
-         commentId : "2",
-          commentDate: "2022년 11월 31일",
-          comment:"적용해보니 코드가 정말 간결해지네요ㅎㅎ",
-        },{
-          commentId: "3",
-          commentDate: "2022년 12월 31일",
-          comment:"key를 꼭 넣어줘야 하는군요",
-        },{
-          commentId : "4",
-          commentDate: "2022년 12월 31일",
-          comment:"생산성이 확 올라가는 느낌입니다ㅋㅋ",
-        }
-        ]
-    }]
-
+  
     const commentUpdate = (object) =>{
       
     let newCommnet ={
@@ -198,15 +180,19 @@ function App(props) {
     return (
         <BrowserRouter>
             <ThemeProvider theme={isDark ? darkMode : defalutTheme}>
-            <Button title="테마 변경" onClick={() => setIsDark((prev) => !prev)} />
+            <div style={{display: "flex", flexDirection: "column", height: "100vh"}}>
+              <BtnContain>
+                <Button title="테마 변경" onClick={() => setIsDark((prev) => !prev)} />
+              </BtnContain>
+            
             <Routes>
                 <Route index element={<LogIn posts={postItems} />} />
-                <Route path="main-pages" element={<MainPage posts={postItems} />} />
-                <Route path="post-write" element={<PostWritePage />} />
+                <Route path="/main-pages" element={<MainPage posts={postItems} />} />
+                <Route path="/post-write" element={<PostWritePage />} />
              
                 <Route path="post/:postId" element={<PostViewPage posts={postItems} onCommentHandler={commentUpdate} />} />
             </Routes>
-
+            </div>
             </ThemeProvider>
         </BrowserRouter>
     );
@@ -217,3 +203,7 @@ export default App;
 // 테마 컴포넌트 화면 안에 같이 넣기
 // 추가, 삭제 > 할 수 있으면 하고 싶다
 // 사용자 이름 로컬스토리지 저장, 기억
+
+
+// 뒤로 가기 버튼이 작동 안함 : useNavigate
+// 상태관리툴 리코일

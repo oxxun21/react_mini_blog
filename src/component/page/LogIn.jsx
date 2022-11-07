@@ -4,7 +4,7 @@ import styled from "styled-components";
 import MainPage from "./MainPage";
 
 const Wrapper = styled.div`
-  height: 100vh;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -77,7 +77,7 @@ function LogIn(props) {
         setMessage(true);
         e.preventDefault();
       } else {
-        setIsLogin(true);
+        navigate("/main-pages", {state:{userName : userName }})
         e.preventDefault();
       }
     };
@@ -89,13 +89,12 @@ function LogIn(props) {
     //   window.localStorage.setItem("userName", JSON.stringify(userName));
     // }, [userName]);
 
+    const navigate = useNavigate()
+
     const [message, setMessage] = useState(false);
   
     return (
       <> 
-        {isLogin ? (
-          <MainPage userName={userName} posts={props.posts} />
-        ) : (
           <Wrapper>    
             <Title>Mini Blog Project</Title>
             <ClockText>{clock}</ClockText>
@@ -111,7 +110,7 @@ function LogIn(props) {
               <ErrorMessage>닉네임을 입력해 주세요!</ErrorMessage>
             ) : null}
           </Wrapper>
-        )}
+       
       </>
     );
 }
