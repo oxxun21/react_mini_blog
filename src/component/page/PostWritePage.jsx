@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import style from "../page/App.css";
 import Button from "../ui/Button";
 import "../../font/AppFont.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -42,8 +40,6 @@ const Title = styled.input`
 
 
 function PostWritePage(props) {
-    const navigate = useNavigate();
-
     const [content, setContent] = useState({
         title: '',
         content: '',

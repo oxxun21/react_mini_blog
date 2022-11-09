@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CommentList from "../list/CommentList";
-import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import "../../font/AppFont.css";
 
@@ -94,15 +93,15 @@ function PostViewPage(props) {
 
     const commentHandler = (event) => {
         event.preventDefault()
-        
-        let object = {  
-            postId : postIdToDB,
-            commentId : Math.random(),
-            commentDate: "2022년 10월 31일",
-            comment : comment
 
-        }   
-        props.onCommentHandler(object);  
+        let object = {
+            postId: postIdToDB,
+            commentId: Math.random(),
+            commentDate: "2022년 10월 31일",
+            comment: comment
+
+        }
+        props.onCommentHandler(object);
     }
 
     return (
@@ -125,18 +124,18 @@ function PostViewPage(props) {
             <CommentDiv>
                 <CommentLabel>댓글</CommentLabel>
                 <CommentList comments={props.posts[postIdToDB].comments} />
-                
+
                 <form onSubmit={commentHandler}>
-                <CommentInput
-                    onChange={(event) => {
-                        setComment(event.target.value);
-                    }}
-                />
-                <CommentBtn>
-                <Button
-                    title="댓글 작성하기"
-                />
-                </CommentBtn>
+                    <CommentInput
+                        onChange={(event) => {
+                            setComment(event.target.value);
+                        }}
+                    />
+                    <CommentBtn>
+                        <Button
+                            title="댓글 작성하기"
+                        />
+                    </CommentBtn>
                 </form>
             </CommentDiv>
         </Wrapper>

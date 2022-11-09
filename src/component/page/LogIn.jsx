@@ -1,7 +1,6 @@
-import React , { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MainPage from "./MainPage";
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -14,13 +13,13 @@ const Wrapper = styled.div`
     color: ${(props) => props.theme.textColor};
 `
 
-const Title = styled.p `
+const Title = styled.p`
     display: flex;
     font-size: 35px;
     font-weight: bold;
 `
 
-const ClockText = styled.p `
+const Clock = styled.p`
     display: flex;
     font-size: 20px;
     margin-top: 20px;
@@ -34,7 +33,7 @@ const StyledForm = styled.form`
     margin-top: 30px;
 `
 
-const Input = styled.input`
+const FormInput = styled.input`
     width: 200px;
     height: 40px;
     border: 1px solid black;
@@ -42,7 +41,7 @@ const Input = styled.input`
     padding: 0 10px;
 `
 
-const LogInButton = styled.button`
+const FormBtn = styled.button`
     width: 100px;
     height: 40px;
     padding: 8px 16px;
@@ -63,55 +62,47 @@ const ErrorMessage = styled.span`
 `;
 
 function LogIn(props) {
-    const [clock, setClock] = useState(0);
+  const [clock, setClock] = useState(0);
 
-    useEffect(() => {
-        const showClock = setInterval(() => {
-           setClock(new Date().toLocaleTimeString())
-        },1000);
-        return () => clearInterval(showClock);
-    }, []);
+  useEffect(() => {
+    const showClock = setInterval(() => {
+      setClock(new Date().toLocaleTimeString())
+    }, 1000);
+    return () => clearInterval(showClock);
+  }, []);
 
-    const onSubmit = (e) => {
-      if (userName.length < 2) {
-        setMessage(true);
-        e.preventDefault();
-      } else {
-        navigate("/main-pages", {state:{userName : userName }})
-        e.preventDefault();
-      }
-    };
+  const [userName, setUserName] = useState("");
+  const [message, setMessage] = useState(false);
+  const navigate = useNavigate();
 
-    const [isLogin, setIsLogin] = useState(false);
-    const [userName, setUserName] = useState("");
+  const onSubmit = (e) => {
+    if (userName.length < 2) {
+      setMessage(true);
+      e.preventDefault();
+    } else {
+      navigate("/main-pages", { state: { userName: userName } })
+      e.preventDefault();
+    }
+  };
 
-    // useEffect(() => {
-    //   window.localStorage.setItem("userName", JSON.stringify(userName));
-    // }, [userName]);
-
-    const navigate = useNavigate()
-
-    const [message, setMessage] = useState(false);
-  
-    return (
-      <> 
-          <Wrapper>    
-            <Title>Mini Blog Project</Title>
-            <ClockText>{clock}</ClockText>
-            <StyledForm onSubmit={onSubmit}>
-              <Input
-                placeholder="What's your name?"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-              <LogInButton>Log In</LogInButton>
-            </StyledForm>
-            {message ? (
-              <ErrorMessage>닉네임을 입력해 주세요!</ErrorMessage>
-            ) : null}
-          </Wrapper>
-       
-      </>
-    );
+  return (
+    <>
+      <Wrapper>
+        <Title>Welcome, My mini Blog</Title>
+        <Clock>{clock}</Clock>
+        <StyledForm onSubmit={onSubmit}>
+          <FormInput
+            placeholder="What's your name?"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <FormBtn>Log In</FormBtn>
+        </StyledForm>
+        {message ? (<ErrorMessage>닉네임을 입력해주세요!</ErrorMessage>
+        ) : null}
+      </Wrapper>
+    </>
+  )
 }
+
 export default LogIn;

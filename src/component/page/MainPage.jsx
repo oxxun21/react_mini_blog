@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "../ui/Button";
-import data from '../../data.json';
 import "../../font/AppFont.css";
 
 const Wrapper = styled.div`
@@ -70,17 +69,15 @@ const PostContain = styled.div`
     justify-content: center;
 `
 
-function MainPage({userName, posts}) {
+function MainPage({ userName, posts }) {
     const navigate = useNavigate();
     //const userName = useState(() => {JSON.stringify(window.localStorage.getItem("userName"))});
 
-const onClickLink = (item) => {
-  navigate(`/post/${item.id}`);
-}
+    const onClickLink = (item) => {
+        navigate(`/post/${item.id}`);
+    }
 
-const location = useLocation();
-
-
+    const location = useLocation();
 
     return (
         <Wrapper>
@@ -98,7 +95,7 @@ const location = useLocation();
                         }}
                     />
                 </ButtonContain>
-                
+
                 <PostContain>
                     <PostList
                         posts={posts}
